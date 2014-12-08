@@ -6,5 +6,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>runtime-core</module>
+  	<module>runtime-terminal</module>
   </modules>
 </project>

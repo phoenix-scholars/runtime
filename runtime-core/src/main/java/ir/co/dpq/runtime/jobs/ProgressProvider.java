@@ -31,6 +31,7 @@ import ir.co.dpq.runtime.*;
  * @since 3.0
  */
 public abstract class ProgressProvider {
+	
 	/**
 	 * Provides a new progress monitor instance to be used by the given job.
 	 * This method is called prior to running any job that does not belong to a
