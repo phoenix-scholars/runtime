@@ -11,6 +11,7 @@ public class Main {
 		job1.schedule();
 		CounterTestJob job = new CounterTestJob();
 		job.schedule();
+		job.addLast(job);
 		job.join();
 	}
 
