@@ -1,7 +1,6 @@
-package ir.co.dpq.runtime.terminal.test;
+package ir.co.dpq.runtime.example.test;
 import ir.co.dpq.runtime.jobs.JobManager;
 import ir.co.dpq.runtime.terminal.TerminaProgressProvider;
-import ir.co.dpq.runtime.test.CounterTestJob;
 
 public class Main {
 	public static void main(String[] argv) throws Exception {

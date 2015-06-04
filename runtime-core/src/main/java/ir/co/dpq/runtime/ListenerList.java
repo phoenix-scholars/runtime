@@ -1,20 +1,21 @@
 package ir.co.dpq.runtime;
 
 /**
+ * فهرست شنودگرها.
+ * 
  * This class is a thread safe list that is designed for storing lists of
  * listeners. The implementation is optimized for minimal memory footprint,
  * frequent reads and infrequent writes. Modification of the list is
  * synchronized and relatively expensive, while accessing the listeners is very
  * fast. Readers are given access to the underlying array data structure for
  * reading, with the trust that they will not modify the underlying array.
- * <p>
+ * 
  * <a name="same">A listener list handles the <i>same</i> listener being added
  * multiple times, and tolerates removal of listeners that are the same as other
  * listeners in the list. For this purpose, listeners can be compared with each
  * other using either equality or identity, as specified in the list
  * constructor.
- * </p>
- * <p>
+ * 
  * Use the <code>getListeners</code> method when notifying listeners. The
  * recommended code sequence for notifying all registered listeners of say,
  * <code>FooListener.eventHappened</code>, is:
@@ -26,10 +27,7 @@ package ir.co.dpq.runtime;
  * }
  * </pre>
  * 
- * </p>
- * <p>
- * This class can be used without OSGi running.
- * </p>
+ * 
  * 
  * @since org.eclipse.equinox.common 3.2
  */

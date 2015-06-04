@@ -8,6 +8,7 @@
 	<modules>
 		<module>runtime-core</module>
 		<module>runtime-terminal</module>
+		<module>runtime-example</module>
 	</modules>
 
 	<properties>
@@ -16,4 +17,19 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>ir.co.dpq.runtime</groupId>
+				<artifactId>runtime-core</artifactId>
+				<version>0.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>ir.co.dpq.runtime</groupId>
+				<artifactId>runtime-terminal</artifactId>
+				<version>0.0.1</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

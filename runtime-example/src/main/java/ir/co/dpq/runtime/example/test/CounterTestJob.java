@@ -14,7 +14,7 @@
  * 
  * http://dpq.co.ir/licenses
  */
-package ir.co.dpq.runtime.test;
+package ir.co.dpq.runtime.example.test;
 
 import ir.co.dpq.runtime.*;
 import ir.co.dpq.runtime.jobs.*;
