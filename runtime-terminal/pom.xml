@@ -16,7 +16,6 @@
 		<dependency>
 			<groupId>ir.co.dpq.runtime</groupId>
 			<artifactId>runtime-core</artifactId>
-			<version>0.0.1</version>
 		</dependency>
 	</dependencies>
 
