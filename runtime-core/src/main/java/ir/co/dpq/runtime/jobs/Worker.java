@@ -46,6 +46,7 @@ public class Worker extends Thread {
 				} catch (OperationCanceledException e) {
 					result = Status.CANCEL_STATUS;
 				} catch (Exception e) {
+					e.printStackTrace();
 					result = handleException(currentJob, e);
 				} catch (ThreadDeath e) {
 					// must not consume thread death
