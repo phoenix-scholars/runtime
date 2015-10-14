@@ -9,6 +9,7 @@
 		<module>runtime-core</module>
 		<module>runtime-terminal</module>
 		<module>runtime-example</module>
+		<module>runtime-jobs</module>
 	</modules>
 
 	<properties>

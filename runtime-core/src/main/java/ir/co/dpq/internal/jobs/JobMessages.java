@@ -11,14 +11,16 @@ package ir.co.dpq.internal.jobs;
 
 import java.util.Date;
 //import org.eclipse.osgi.util.NLS;
+import java.util.ResourceBundle;
 
 /**
  * Job plugin message catalog
  */
-public class JobMessages 
-//extends NLS 
+public class JobMessages
+// extends NLS
 {
-	private static final String BUNDLE_NAME = "ir.co.dpq.internal.jobs.messages"; //$NON-NLS-1$
+	// private static final String BUNDLE_NAME =
+	// "ir.co.dpq.internal.jobs.messages"; //$NON-NLS-1$
 
 	// Job Manager and Locks
 	public static String jobs_blocked0;
@@ -35,12 +37,20 @@ public class JobMessages
 	}
 
 	public static void reloadMessages() {
-//		NLS.initializeMessages(BUNDLE_NAME, JobMessages.class);
+		// NLS.initializeMessages(BUNDLE_NAME, JobMessages.class);
+		ResourceBundle resource = ResourceBundle.getBundle(JobMessages.class.getName());
+
+		jobs_blocked0 = resource.getString("jobs_blocked0");
+		jobs_blocked1 = resource.getString("jobs_blocked1");
+		jobs_internalError = resource.getString("jobs_internalError");
+		jobs_waitFamSub = resource.getString("jobs_waitFamSub");
+		jobs_waitFamSubOne = resource.getString("jobs_waitFamSubOne");
+		meta_pluginProblems = resource.getString("meta_pluginProblems");
 	}
 
 	/**
-	 * Print a debug message to the console. 
-	 * Pre-pend the message with the current date and the name of the current thread.
+	 * Print a debug message to the console. Pre-pend the message with the
+	 * current date and the name of the current thread.
 	 */
 	public static void message(String message) {
 		StringBuffer buffer = new StringBuffer();
