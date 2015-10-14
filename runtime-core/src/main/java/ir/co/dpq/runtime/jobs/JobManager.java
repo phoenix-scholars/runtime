@@ -136,22 +136,22 @@ public class JobManager implements IJobManager {
 		return instance;
 	}
 
-	public void schedule(Job job, long delay, boolean reschedule) {
+	public IJobManager schedule(Job job, long delay, boolean reschedule) {
 		if (!active)
 			throw new IllegalStateException("Job manager has been shut down."); //$NON-NLS-1$
-		//		Assert.isNotNull(job, "Job is null"); //$NON-NLS-1$
-		//		Assert.isLegal(delay >= 0, "Scheduling delay is negative"); //$NON-NLS-1$
+		Assert.isNotNull(job, "Job is null"); //$NON-NLS-1$
+		Assert.isLegal(delay >= 0, "Scheduling delay is negative"); //$NON-NLS-1$
 		synchronized (lock) {
 			// if the job is already running, set it to be rescheduled when done
 			if (job.getState() == Job.RUNNING) {
 				job.setStartTime(delay);
-				return;
+				return this;
 			}
 			// can't schedule a job that is waiting or sleeping
 			if (job.getInternalState() != Job.NONE)
-				return;
+				return this;
 			if (JobManager.DEBUG) {
-				//				JobManager.debug("Scheduling job: " + job); //$NON-NLS-1$
+				JobManager.debug("Scheduling job: " + job); //$NON-NLS-1$
 			}
 			// remember that we are about to schedule the job
 			// to prevent multiple schedule attempts from succeeding (bug 68452)
@@ -163,6 +163,7 @@ public class JobManager implements IJobManager {
 		doSchedule(job, delay);
 		// call the pool outside sync block to avoid deadlock
 		pool.jobQueued();
+		return this;
 	}
 
 	/**
@@ -178,8 +179,7 @@ public class JobManager implements IJobManager {
 				job.setStartTime(System.currentTimeMillis() + delay);
 				changeState(job, Job.SLEEPING);
 			} else {
-				job.setStartTime(System.currentTimeMillis()
-						+ delayFor(job.getPriority()));
+				job.setStartTime(System.currentTimeMillis() + delayFor(job.getPriority()));
 				// job.setWaitQueueStamp(waitQueueCounter.increment());
 				changeState(job, Job.WAITING);
 			}
@@ -211,7 +211,8 @@ public class JobManager implements IJobManager {
 						waiting.remove(job);
 					} catch (RuntimeException e) {
 						// Assert.isLegal(false,
-						// "Tried to remove a job that wasn't in the queue"); //$NON-NLS-1$
+						// "Tried to remove a job that wasn't in the queue");
+						// //$NON-NLS-1$
 					}
 					break;
 				case Job.SLEEPING:
@@ -219,7 +220,8 @@ public class JobManager implements IJobManager {
 						sleeping.remove(job);
 					} catch (RuntimeException e) {
 						// Assert.isLegal(false,
-						// "Tried to remove a job that wasn't in the queue"); //$NON-NLS-1$
+						// "Tried to remove a job that wasn't in the queue");
+						// //$NON-NLS-1$
 					}
 					break;
 				case Job.RUNNING:
@@ -238,7 +240,8 @@ public class JobManager implements IJobManager {
 				default:
 					// Assert.isLegal(
 					// false,
-					// "Invalid job state: " + job + ", state: " + oldState); //$NON-NLS-1$ //$NON-NLS-2$
+					// "Invalid job state: " + job + ", state: " + oldState);
+					// //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				job.setInternalState(newState);
 				switch (newState) {
@@ -255,8 +258,7 @@ public class JobManager implements IJobManager {
 					try {
 						sleeping.enqueue(job);
 					} catch (RuntimeException e) {
-						throw new RuntimeException(
-								"Error changing from state: " + oldState); //$NON-NLS-1$
+						throw new RuntimeException("Error changing from state: " + oldState); //$NON-NLS-1$
 					}
 					break;
 				case Job.RUNNING:
@@ -273,7 +275,8 @@ public class JobManager implements IJobManager {
 					break;
 				// default:
 				// Assert.isLegal(
-				// false, "Invalid job state: " + job + ", state: " + newState); //$NON-NLS-1$ //$NON-NLS-2$
+				// false, "Invalid job state: " + job + ", state: " + newState);
+				// //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
 		}
@@ -287,12 +290,11 @@ public class JobManager implements IJobManager {
 		// if (DEBUG_TIMING) {
 		// //lazy initialize to avoid overhead when not debugging
 		// if (DEBUG_FORMAT == null)
-		//				DEBUG_FORMAT = new SimpleDateFormat("HH:mm:ss.SSS"); //$NON-NLS-1$
+		// DEBUG_FORMAT = new SimpleDateFormat("HH:mm:ss.SSS"); //$NON-NLS-1$
 		// DEBUG_FORMAT.format(new Date(), msgBuf, new FieldPosition(0));
 		// msgBuf.append('-');
 		// }
-		msgBuf.append('[').append(Thread.currentThread()).append(']')
-				.append(msg);
+		msgBuf.append('[').append(Thread.currentThread()).append(']').append(msg);
 		System.out.println(msgBuf.toString());
 	}
 
@@ -440,12 +442,13 @@ public class JobManager implements IJobManager {
 			return 50L;
 		case Job.LONG:
 			return 100L;
-			// case Job.BUILD :
-			// return 500L;
-			// case Job.DECORATE :
-			// return 1000L;
+		// case Job.BUILD :
+		// return 500L;
+		// case Job.DECORATE :
+		// return 1000L;
 		default:
-			// Assert.isTrue(false, "Job has invalid priority: " + priority); //$NON-NLS-1$
+			// Assert.isTrue(false, "Job has invalid priority: " + priority);
+			// //$NON-NLS-1$
 			return 0;
 		}
 	}
@@ -458,7 +461,9 @@ public class JobManager implements IJobManager {
 		try {
 			return job.shouldRun();
 		} catch (Exception | LinkageError | AssertionError e) {
-			// RuntimeLog.log(new Status(IStatus.ERROR, JobManager.PI_JOBS, JobManager.PLUGIN_ERROR, "Error invoking shouldRun() method on: " + job, t)); //$NON-NLS-1$
+			// RuntimeLog.log(new Status(IStatus.ERROR, JobManager.PI_JOBS,
+			// JobManager.PLUGIN_ERROR, "Error invoking shouldRun() method on: "
+			// + job, t)); //$NON-NLS-1$
 		}
 		// if the should is unexpectedly failing it is safer not to run it
 		return false;
@@ -488,8 +493,7 @@ public class JobManager implements IJobManager {
 			changeState(job, Job.NONE);
 		}
 		// notify listeners outside sync block
-		final boolean reschedule = active && rescheduleDelay > Job.T_NONE
-				&& job.shouldSchedule();
+		final boolean reschedule = active && rescheduleDelay > Job.T_NONE && job.shouldSchedule();
 		if (notify) {
 			// jobListeners.done((Job) job, result, reschedule);
 		}
@@ -571,8 +575,9 @@ public class JobManager implements IJobManager {
 	 * 
 	 * @see IJobManager#setProgressProvider(IProgressProvider)
 	 */
-	public void setProgressProvider(ProgressProvider provider) {
+	public IJobManager setProgressProvider(ProgressProvider provider) {
 		progressProvider = provider;
+		return this;
 	}
 
 	/**
@@ -670,8 +675,7 @@ public class JobManager implements IJobManager {
 			if (suspended && state != Job.RUNNING)
 				return;
 			// it's an error for a job to join itself
-			if (state == Job.RUNNING
-					&& job.getThread() == Thread.currentThread())
+			if (state == Job.RUNNING && job.getThread() == Thread.currentThread())
 				throw new IllegalStateException("Job attempted to join itself"); //$NON-NLS-1$
 			// the semaphore will be released when the job is done
 			barrier = new Semaphore(null);

@@ -17,6 +17,6 @@
 package ir.co.dpq.runtime.jobs;
 
 public interface IJobManager {
-	void schedule(Job job, long delay, boolean reschedule);
-	void setProgressProvider(ProgressProvider provider);
+	IJobManager schedule(Job job, long delay, boolean reschedule);
+	IJobManager setProgressProvider(ProgressProvider provider);
 }

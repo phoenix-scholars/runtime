@@ -57,7 +57,7 @@ public interface IProgressMonitor {
 	 * @param work
 	 *            the amount of work done
 	 */
-	public void internalWorked(double work);
+	void internalWorked(double work);
 
 	/**
 	 * Returns whether cancelation of current operation has been requested.
