@@ -1,4 +1,15 @@
-package ir.co.dpq.runtime.jobs;
+/*******************************************************************************
+ * Copyright (c) 2003, 2012 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *     James Blackburn (Broadcom Corp.) - Bug 311863 Ordered Lock lost after interrupt
+ *******************************************************************************/
+package ir.co.dpq.internal.jobs;
 
 public class Semaphore {
 	protected long notifications;
@@ -10,8 +21,8 @@ public class Semaphore {
 	}
 
 	/**
-	 * Attempts to acquire this semaphore. Returns true if it was successfully
-	 * acquired, and false otherwise.
+	 * Attempts to acquire this semaphore.  Returns true if it was successfully acquired,
+	 * and false otherwise.
 	 */
 	public synchronized boolean acquire(long delay) throws InterruptedException {
 		if (Thread.interrupted())
@@ -31,8 +42,8 @@ public class Semaphore {
 	}
 
 	/**
-	 * Attempt to acquire the semaphore without waiting. Returns true if
-	 * successfully acquired, false otherwise.
+	 * Attempt to acquire the semaphore without waiting.
+	 * Returns true if successfully acquired, false otherwise.
 	 */
 	public synchronized boolean attempt() {
 		if (notifications > 0) {
@@ -42,10 +53,12 @@ public class Semaphore {
 		return false;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		return (runnable == ((Semaphore) obj).runnable);
 	}
 
+	@Override
 	public int hashCode() {
 		return runnable == null ? 0 : runnable.hashCode();
 	}
@@ -56,6 +69,7 @@ public class Semaphore {
 	}
 
 	// for debug only
+	@Override
 	public String toString() {
 		return "Semaphore(" + runnable + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 	}

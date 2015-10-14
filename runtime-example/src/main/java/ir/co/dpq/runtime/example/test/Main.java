@@ -1,5 +1,5 @@
 package ir.co.dpq.runtime.example.test;
-import ir.co.dpq.runtime.jobs.JobManager;
+import ir.co.dpq.internal.jobs.JobManager;
 import ir.co.dpq.runtime.terminal.TerminaProgressProvider;
 
 public class Main {
@@ -10,7 +10,6 @@ public class Main {
 		job1.schedule();
 		CounterTestJob job = new CounterTestJob();
 		job.schedule();
-		job.addLast(job);
 		job.join();
 	}
 

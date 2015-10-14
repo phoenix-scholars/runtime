@@ -31,6 +31,7 @@ public class CounterTestJob extends Job {
 	}
 
 	public CounterTestJob(int count, int delay) {
+		super("Counter test");
 		this.count = count;
 		this.delay = delay;
 		this.name = "Counting with dealy";
@@ -53,6 +54,7 @@ public class CounterTestJob extends Job {
 			}
 		}
 		monitor.done();
+		schedule(1000);
 		return Status.OK_STATUS;
 	}
 

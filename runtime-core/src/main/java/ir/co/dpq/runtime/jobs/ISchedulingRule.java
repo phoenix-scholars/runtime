@@ -1,19 +1,13 @@
-/*
- * حق نشر 1392-1402 دانش پژوهان ققنوس
- * حقوق این اثر محفوظ است.
+/*******************************************************************************
+ *  Copyright (c) 2003, 2012 IBM Corporation and others.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
  * 
- * استفاده مجدد از متن و یا نتایج این اثر در هر شکل غیر قانونی است مگر اینکه متن حق
- * نشر بالا در ابتدای تمامی مستندهای و یا برنامه‌های به دست آمده از این اثر
- * بازنویسی شود. این کار باید برای تمامی مستندها، متنهای تبلیغاتی برنامه‌های
- * کاربردی و سایر مواردی که از این اثر به دست می‌آید مندرج شده و در قسمت تقدیر از
- * صاحب این اثر نام برده شود.
- * 
- * نام گروه دانش پژوهان ققنوس ممکن است در محصولات به در آمده شده از این اثر درج
- * نشود که در این حالت با مطالبی که در بالا اورده شده در تضاد نیست. برای اطلاع
- * بیشتر در مورد حق نشر آدرس زیر مراجعه کنید:
- * 
- * http://dpq.co.ir/licenses
- */
+ *  Contributors:
+ *     IBM - Initial API and implementation
+ *******************************************************************************/
 package ir.co.dpq.runtime.jobs;
 
 /**
@@ -30,7 +24,7 @@ package ir.co.dpq.runtime.jobs;
  * @see Job#getRule()
  * @see Job#setRule(ISchedulingRule)
  * @see Job#schedule(long)
- * @see IJobManager#beginRule(ISchedulingRule, org.eclipse.core.runtime.IProgressMonitor)
+ * @see IJobManager#beginRule(ISchedulingRule, ir.co.dpq.runtime.IProgressMonitor)
  * @see IJobManager#endRule(ISchedulingRule)
  * @since 3.0
  */

@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ir.co.dpq.runtime</groupId>
 	<artifactId>runtime</artifactId>
-	<version>0.0.1</version>
+	<version>0.1.1</version>
 	<packaging>pom</packaging>
 	<modules>
 		<module>runtime-core</module>
@@ -23,12 +23,12 @@
 			<dependency>
 				<groupId>ir.co.dpq.runtime</groupId>
 				<artifactId>runtime-core</artifactId>
-				<version>0.0.1</version>
+				<version>0.1.1</version>
 			</dependency>
 			<dependency>
 				<groupId>ir.co.dpq.runtime</groupId>
 				<artifactId>runtime-terminal</artifactId>
-				<version>0.0.1</version>
+				<version>0.1.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
