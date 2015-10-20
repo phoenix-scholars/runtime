@@ -60,6 +60,7 @@ public class Queue {
 		return (index == 0) ? (elements.length - 1) : index - 1;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Iterator elements() {
 		/**/
 		if (isEmpty())
@@ -172,6 +173,7 @@ public class Queue {
 		StringBuffer sb = new StringBuffer();
 		sb.append("["); //$NON-NLS-1$
 		if (!isEmpty()) {
+			@SuppressWarnings("rawtypes")
 			Iterator it = elements();
 			while (true) {
 				sb.append(it.next());

@@ -10,8 +10,6 @@
  *******************************************************************************/
 package ir.co.dpq.internal.jobs;
 
-import ir.co.dpq.runtime.jobs.IJobManager;
-
 /**
  * The class contains a set of helper methods for the runtime Jobs plugin.
  * The following utility methods are supplied:
@@ -43,7 +41,6 @@ class JobOSGiUtils {
 		super();
 	}
 
-	@SuppressWarnings("unchecked")
 	void openServices() {
 //		BundleContext context = JobActivator.getContext();
 //		if (context == null) {

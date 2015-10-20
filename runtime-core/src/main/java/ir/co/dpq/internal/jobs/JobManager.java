@@ -754,7 +754,7 @@ public class JobManager implements IJobManager {
 	 * with the scheduling rule of the given job. Returns null if there are no
 	 * conflicting jobs.
 	 */
-	InternalJob findBlockedJob(InternalJob job, Iterator jobs) {
+	InternalJob findBlockedJob(InternalJob job, @SuppressWarnings("rawtypes") Iterator jobs) {
 		synchronized (lock) {
 			while (jobs.hasNext()) {
 				InternalJob waitingJob = (InternalJob) jobs.next();

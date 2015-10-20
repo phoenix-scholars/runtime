@@ -144,6 +144,7 @@ public final class JobQueue {
 		return dummy.previous() == dummy ? null : dummy.previous();
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Iterator iterator() {
 		return new Iterator() {
 			InternalJob pointer = dummy;

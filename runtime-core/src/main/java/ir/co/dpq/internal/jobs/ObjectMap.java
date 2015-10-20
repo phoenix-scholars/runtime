@@ -20,6 +20,7 @@ import java.util.*;
  * 
  * Note: This class is copied from ir.co.dpq.resources
  */
+@SuppressWarnings("rawtypes")
 public class ObjectMap implements Map {
 	// 8 attribute keys, 8 attribute values
 	protected static final int DEFAULT_SIZE = 16;

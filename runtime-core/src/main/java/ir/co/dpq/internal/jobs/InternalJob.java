@@ -20,6 +20,7 @@ import ir.co.dpq.runtime.jobs.*;
  * Internal implementation class for jobs. Clients must not implement this class
  * directly.  All jobs must be subclasses of the API <code>ir.co.dpq.runtime.jobs.Job</code> class.
  */
+@SuppressWarnings("rawtypes")
 public abstract class InternalJob extends PlatformObject implements Comparable {
 	/** 
 	 * Job state code (value 16) indicating that a job has been removed from

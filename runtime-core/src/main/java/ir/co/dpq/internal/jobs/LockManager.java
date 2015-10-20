@@ -298,6 +298,7 @@ public class LockManager {
 	void resumeSuspendedLocks(Thread owner) {
 		LockState[] toResume;
 		synchronized (suspendedLocks) {
+			@SuppressWarnings("rawtypes")
 			Stack prevLocks = suspendedLocks.get(owner);
 			if (prevLocks == null)
 				return;
