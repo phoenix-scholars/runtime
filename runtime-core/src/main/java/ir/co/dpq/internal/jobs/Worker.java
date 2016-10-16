@@ -10,7 +10,9 @@
  *******************************************************************************/
 package ir.co.dpq.internal.jobs;
 
-import ir.co.dpq.runtime.*;
+import ir.co.dpq.runtime.IStatus;
+import ir.co.dpq.runtime.OperationCanceledException;
+import ir.co.dpq.runtime.Status;
 import ir.co.dpq.runtime.jobs.Job;
 
 /**
@@ -39,7 +41,7 @@ public class Worker extends Thread {
 	}
 
 	private IStatus handleException(InternalJob job, Throwable t) {
-		String message = JobMessages.jobs_internalError;
+		String message = "An internal error occurred during: \"{0}\".";//JobMessages.jobs_internalError;
 //				NLS.bind(JobMessages.jobs_internalError, job.getName());
 		return new Status(IStatus.ERROR, JobManager.PI_JOBS, JobManager.PLUGIN_ERROR, message, t);
 	}
