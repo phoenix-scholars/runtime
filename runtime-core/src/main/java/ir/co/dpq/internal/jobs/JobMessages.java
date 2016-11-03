@@ -59,6 +59,5 @@ public class JobMessages
 		buffer.append(Thread.currentThread().getName());
 		buffer.append("] "); //$NON-NLS-1$
 		buffer.append(message);
-		System.out.println(buffer.toString());
 	}
 }
